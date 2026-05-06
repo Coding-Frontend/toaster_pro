@@ -1,0 +1,31 @@
+name: toaster_pro
+description: >-
+  A premium overlay-based toast notification package for Flutter.
+  Supports stacking, slide/fade animations, auto-dismiss,
+  and typed presets (success, error, warning, info).
+  Works with or without GetX — no context required after initial setup.
+version: 1.0.0
+homepage: https://github.com/Coding-Frontend/toaster_pro
+repository: https://github.com/Coding-Frontend/toaster_pro
+issue_tracker: https://github.com/Coding-Frontend/toaster_pro/issues
+
+topics:
+  - toast
+  - snackbar
+  - notification
+  - overlay
+  - ui
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_animate: ^4.5.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
