@@ -79,14 +79,25 @@ class DelightToastBar {
   /// Show the toast. Optionally pass a [BuildContext]; otherwise the package
   /// uses [DelightToastBar.navigatorKey].
   void show([BuildContext? context]) {
-    BuildContext? ctx = context;
-    if (ctx == null) {
-      ctx = navigatorKey?.currentContext;
-    }
-    if (ctx == null) return;
+    // Try to resolve a BuildContext first from the caller, then from the
+    // configured navigatorKey. If an overlay is not yet available (app
+    // still building), schedule a retry on the next frame so toasts work
+    // reliably during startup without requiring callers to call setState.
+    BuildContext? ctx = context ?? navigatorKey?.currentContext;
 
-    final overlay = Navigator.of(ctx, rootNavigator: true).overlay;
-    if (overlay == null) return;
+    OverlayState? overlay;
+    if (ctx != null) {
+      overlay = Navigator.of(ctx, rootNavigator: true).overlay;
+    } else {
+      overlay = navigatorKey?.currentState?.overlay;
+    }
+
+    if (overlay == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => show(context));
+      return;
+    }
+
+    final buildCtx = ctx ?? overlay.context;
 
     final info = _SnackBarInfo(key: GlobalKey<RawDelightToastState>());
     _info = info;
@@ -102,13 +113,13 @@ class DelightToastBar {
         getScaleFactor: () => _calculateScaleFactor(_toastBars, this),
         snackbarDuration: snackbarDuration,
         onRemove: remove,
-        child: builder.call(ctx!),
+        child: builder.call(buildCtx),
       ),
     );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _toastBars.add(this);
-      overlay.insert(info.entry);
+      overlay!.insert(info.entry);
     });
   }
 

@@ -1,0 +1,11 @@
+{
+  "name": "toaster_pro-screenshots",
+  "version": "1.0.0",
+  "description": "Helper to capture toaster_pro example screenshots",
+  "scripts": {
+    "capture": "node capture_screenshots.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.35.0"
+  }
+}

@@ -152,6 +152,53 @@ all toast types, positions, stacking, custom cards, and tap callbacks.
 
 ---
 
+## Screenshots (Examples)
+
+The `example/` app demonstrates the available toast types and behaviours. You
+can automatically capture PNG screenshots for each demo entry using the
+included Playwright helper script. The script saves images to
+`example/screenshots/` and the README references the expected files below.
+
+Quick steps:
+
+1. Start the example app in one terminal:
+
+```bash
+cd example
+flutter run -d web-server --web-hostname=127.0.0.1 --web-port=8080
+```
+
+2. In another terminal, install dev deps and run the capture script:
+
+```bash
+cd scripts
+npm install
+npm run capture -- http://127.0.0.1:8080
+```
+
+3. After it completes, screenshots will be written to `example/screenshots/`.
+  The README references those files so they will appear once generated.
+
+Examples (will show once `example/screenshots/*.png` exist):
+
+![Success](example/screenshots/success.png)
+
+![Error](example/screenshots/error.png)
+
+![Warning](example/screenshots/warning.png)
+
+![Info](example/screenshots/info.png)
+
+![Tap action (dialog)](example/screenshots/tap_action.png)
+
+![Long duration (8s)](example/screenshots/long_duration.png)
+
+![Stacked toasts](example/screenshots/stack_toasts.png)
+
+![Custom card](example/screenshots/custom_card.png)
+
+---
+
 ## License
 
 [MIT](LICENSE) © 2024 Coding-Frontend

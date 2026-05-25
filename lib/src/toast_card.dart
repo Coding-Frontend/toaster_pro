@@ -32,23 +32,25 @@ class ToastCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bg = color ?? Theme.of(context).dialogBackgroundColor;
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       decoration: BoxDecoration(
-        color: color ?? Theme.of(context).dialogBackgroundColor,
-        borderRadius: BorderRadius.circular(15),
+        color: bg,
+        borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            blurRadius: 10,
-            spreadRadius: 3,
-            color: shadowColor ?? Colors.black.withValues(alpha: 0.08),
+            blurRadius: 14,
+            spreadRadius: 0,
+            offset: const Offset(0, 4),
+            color: shadowColor ?? bg.withValues(alpha: 0.35),
           ),
         ],
       ),
       child: ListTile(
-        contentPadding: const EdgeInsets.all(7),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
         leading: leading != null
-            ? Padding(padding: const EdgeInsets.all(10), child: leading)
+            ? Padding(padding: const EdgeInsets.symmetric(vertical: 4), child: leading)
             : null,
         trailing: trailing,
         subtitle: subtitle,
