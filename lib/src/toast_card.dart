@@ -32,7 +32,9 @@ class ToastCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bg = color ?? Theme.of(context).dialogBackgroundColor;
+    final theme = Theme.of(context);
+    final bg =
+        color ?? theme.dialogTheme.backgroundColor ?? theme.colorScheme.surface;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       decoration: BoxDecoration(
@@ -50,7 +52,9 @@ class ToastCard extends StatelessWidget {
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
         leading: leading != null
-            ? Padding(padding: const EdgeInsets.symmetric(vertical: 4), child: leading)
+            ? Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: leading)
             : null,
         trailing: trailing,
         subtitle: subtitle,
