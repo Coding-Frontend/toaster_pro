@@ -4,7 +4,7 @@ description: >-
   Supports stacking, slide/fade animations, auto-dismiss,
   and typed presets (success, error, warning, info).
   Works with or without GetX — no context required after initial setup.
-version: 1.0.0
+version: 2.0.0
 homepage: https://github.com/Coding-Frontend/toaster_pro
 repository: https://github.com/Coding-Frontend/toaster_pro
 issue_tracker: https://github.com/Coding-Frontend/toaster_pro/issues
